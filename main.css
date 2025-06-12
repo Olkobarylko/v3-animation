@@ -6,6 +6,7 @@
 
 body {
     background-color: #1A1A1A;
+    padding-bottom: 2000px;
 }
 
 @font-face {
@@ -136,7 +137,49 @@ body {
   top: 500px;
 }
 
+.time-area .time {
+    display: flex;
+}
 
+.time-area-overflow {
+    overflow: hidden;
+    height: 94px;
+}
+
+.wp-block-animation-v3 .time {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    height: 104px;
+    gap: 0.4rem;
+}
+
+.wp-block-animation-v3 .time > div {
+    display: flex;
+    width: 58px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    line-height: 2rem;
+    padding-top: 2px;
+}
+
+.wp-block-animation-v3 .time > div > div {
+	height: 104px;
+	font-size: 104px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	flex-shrink: 0;
+	font-weight: 300;
+
+	@media (max-width: 1023px) {
+		height: 54px;
+		font-size: 54px;
+	}
+}
 
 
 /* images */
@@ -166,4 +209,37 @@ body {
     display: block;
     width: 100%;
     object-fit: cover;
+}
+
+@keyframes blink {
+	0%,
+	50%,
+	100% {
+		opacity: 1;
+	}
+	25%,
+	75% {
+		opacity: 0;
+	}
+}
+
+.wp-block-animation-v3 .blinking {
+	animation: blink 0.5s ease-in-out 2;
+}
+
+.wp-block-animation-v3 .time-area.finished .time > div > div,
+.wp-block-animation-v3 .time-area.finished .time .time-between-num {
+    color: #f54500;
+}
+
+.wp-block-animation-v3 .time .time-between-num {
+	height: 90px;
+	width: 30px;
+	line-height: 100%;
+	justify-content: center;
+	color: white;
+
+	@media (max-width: 1023px) {
+		height: 38px;
+	}
 }

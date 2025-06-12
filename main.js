@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
       start: `top+=${baseStart} top`,
       end: `top+=${baseEnd} top`,
       scrub: 1,
-      markers: true,
     },
     keyframes: [
       { top: 500, opacity: 0 },
@@ -125,6 +124,145 @@ document.addEventListener("DOMContentLoaded", () => {
  
 });
 
+
+document.addEventListener('DOMContentLoaded', () => {
+	const scrollSection = ".pin-spacer:has(.wp-block-animation-v3__pin-block)";
+
+	let timerActive = false;
+	const timeBlock = document.querySelector('.time');
+	const timeArea = document.querySelector('.time-area');
+	const timeValue = timeBlock.getAttribute('data-time');
+	let [targetMinutes, targetSeconds] = timeValue.split(':').map(Number);
+
+	let minutes = 0;
+	let seconds = 0;
+
+	const columns = [
+		'.time-first-num',
+		'.time-second-num',
+		'.time-third-num',
+		'.time-fourth-num',
+	];
+
+	let timerInterval;
+
+	function animateTime(min, sec) {
+		const timeDigits = [
+			Math.floor(min / 10),
+			min % 10,
+			Math.floor(sec / 10),
+			sec % 10,
+		];
+
+		columns.forEach((selector, index) => {
+			const column = document.querySelector(selector);
+			const digit = timeDigits[index];
+
+			if (!isNaN(digit)) {
+				gsap.to(column, {
+					y: `-${digit * 100}%`,
+					ease: 'power2.out',
+					duration: 1,
+				});
+			}
+		});
+	}
+	let blinkingTriggered = false;
+
+	function updateTime() {
+		if (minutes >= targetMinutes && seconds >= targetSeconds) {
+			clearInterval(timerInterval);
+			timeArea.classList.add('finished');
+			timeArea.classList.remove('blinking');
+			return;
+		}
+
+		if (
+			minutes === targetMinutes &&
+			seconds >= targetSeconds - 1 &&
+			!blinkingTriggered
+		) {
+			blinkingTriggered = true;
+			timeArea.classList.add('blinking');
+			setTimeout(() => {
+				timeArea.classList.remove('blinking');
+			}, 3000);
+		}
+
+		seconds++;
+		if (seconds === 60) {
+			seconds = 0;
+			minutes++;
+		}
+
+		animateTime(minutes, seconds);
+	}
+
+	function pauseTimer() {
+		clearInterval(timerInterval);
+	}
+
+	function resumeTimer() {
+		timerInterval = setInterval(updateTime, 1000);
+	}
+
+	function resetTimer() {
+		minutes = 0;
+		seconds = 0;
+		blinkingTriggered = false;
+		animateTime(minutes, seconds);
+		timeArea.classList.remove('finished');
+		timeArea.classList.remove('blinking');
+	}
+	let selfPgogress =  0;
+
+	setTimeout(() => {
+		ScrollTrigger.create({
+		trigger: scrollSection,
+		start: 'top center',
+		end: 'bottom center+=300',
+		once: false,
+		toggleActions: 'play none none none',
+		invalidateOnRefresh: true,
+		onUpdate: (self) => {
+			if (self.progress > 0 && !timerActive) {
+				resumeTimer();
+				timerActive = true;
+				timeArea.classList.remove('finished');
+			} else if (self.progress === 0 && timerActive) {
+				pauseTimer();
+				timerActive = false;
+				timeArea.classList.remove('finished');
+			}
+		},
+		onEnter: () => {
+			if (!timerActive) {
+				resumeTimer();
+				timerActive = true;
+			}
+			resetTimer();
+		},
+		onLeave: () => {
+			pauseTimer();
+			timerActive = false;
+			timeArea.classList.add('blinking');
+
+			setTimeout(() => {
+				timeArea.classList.add('finished');
+			}, 1000);
+		},
+		onEnterBack: () => {
+			resetTimer();
+		},
+		onLeaveBack: () => {
+			resetTimer();
+			timerActive = false;
+		},
+	});
+	}, 500);
+
+	pauseTimer();
+});
 
 
 
