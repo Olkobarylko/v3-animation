@@ -1,0 +1,169 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1A1A1A;
+}
+
+@font-face {
+    font-family: "Suisse Intl";
+    src: url("fonts/fonnts.com-Suisse_Intl_Mono.ttf");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Suisse Intl";
+    src: url("fonts/fonnts.com-Suisse_Intl_Regular.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Suisse Intl";
+    src: url("fonts/fonnts.com-Suisse_Intl_Medium.ttf");
+    font-weight: 500;
+}
+
+.wp-block-animation-v3 {
+    font-family: "Suisse Intl";
+    color: #FFFFFF;
+}
+
+.wp-block-animation-v3__heading {
+    max-width: 586px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 170px;
+    min-height: 100vh;
+    gap: 24px;
+}
+
+.wp-block-animation-v3__heading-text {
+    font-family: "Suisse Intl";
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #F54500;
+}
+
+.wp-block-animation-v3__heading-title {
+    font-family: "Suisse Intl";
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.wp-block-animation-v3__time {
+    position: absolute;
+    right: 0px;
+    font-family: "Suisse Intl";
+    font-weight: 400;
+    font-size: 103px;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.wp-block-animation-v3__wrapper {
+    position: relative;
+    max-width: 1920px;
+    padding: 0px 80px;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wp-block-animation-v3__info-item {
+  
+}
+
+.wp-block-animation-v3__info-subtitle {
+    font-family: "Suisse Intl";
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin-bottom: 24px;
+}
+
+.wp-block-animation-v3__info-title {
+    margin-bottom: 64px;
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+}
+
+.wp-block-animation-v3__info-text{
+    font-weight: 400;
+    font-family: "Suisse Intl";
+    font-size: 24px;
+    letter-spacing: -0.02em;
+}
+
+.wp-block-animation-v3__info-blocks{
+    display: flex;
+    align-items: center;
+    max-width: 559px;
+    width: 100%;
+}
+
+.wp-block-animation-v3__info-area{
+    position: relative;
+    width: 100%;
+}
+
+.wp-block-animation-v3__info-item{
+    position: absolute;
+    transform: translateY(-50%);
+    width: 100%;
+}
+.wp-block-animation-v3__info-item {
+  position: absolute;
+  transform: translateY(-50%);
+  width: 100%;
+  opacity: 0;
+  top: 500px;
+}
+
+
+
+
+/* images */
+
+.wp-block-animation-v3__images{
+    position: relative;
+    margin-top: 70px;
+    height: calc(100vh - 140px);
+    max-width: 710px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.wp-block-animation-v3__images-block{
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    bottom: 0px;
+    height: 0%;
+}
+
+.wp-block-animation-v3__images-block img {
+    position: absolute;
+    bottom: 0px;
+    height: calc(100vh - 140px);
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
