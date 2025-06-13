@@ -7,19 +7,38 @@ document.addEventListener("DOMContentLoaded", (event) => {
     pinSpacing: true,
   });
 
-  gsap.to(".wp-block-animation-v3__time", {
-    right: "50%",
-    top: "50%",
-    x: "50%",
+  gsap.fromTo(
+  ".wp-block-animation-v3__time",
+  {
+    x: "50vw",
+    y: "0%",
+  },
+  {
+    x: "0",
     y: "-50%",
+    top: "50%",
     scrollTrigger: {
       trigger: ".wp-block-animation-v3__wrapper",
       start: "top+=200 bottom",
       end: "center center",
-
       scrub: 1,
     },
-  });
+  }
+);
+
+//   gsap.to(".wp-block-animation-v3__time", {
+//     right: "50%",
+//     top: "50%",
+//     x: "50%",
+//     y: "-50%",
+//     scrollTrigger: {
+//       trigger: ".wp-block-animation-v3__wrapper",
+//       start: "top+=200 bottom",
+//       end: "center center",
+
+//       scrub: 1,
+//     },
+//   });
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -51,50 +70,50 @@ document.addEventListener("DOMContentLoaded", () => {
     ],
   });
 
-//   gsap.to(subtitle, {
-//     scrollTrigger: {
-//       trigger: triggerBlock,
-//       start: `top+=${baseStart} top`,
-//       end: `top+=${baseEnd} top`,
-//       scrub: 1,
-//     },
-//     keyframes: [
-//       { y: 0 },
-//       { y: 0, duration: 1 },
-//       { y: 0, duration: 1 },
-//       { y: -400, duration: 0.5 },
-//     ],
-//   });
+  gsap.to(subtitle, {
+    scrollTrigger: {
+      trigger: triggerBlock,
+      start: `top+=${baseStart} top`,
+      end: `top+=${baseEnd} top`,
+      scrub: 1,
+    },
+    keyframes: [
+      { y: 0 },
+      { y: 0, duration: 1 },
+      { y: 0, duration: 1 },
+      { y: -400, duration: 0.5 },
+    ],
+  });
 
-//   gsap.to(title, {
-//     scrollTrigger: {
-//       trigger: triggerBlock,
-//       start: `top+=${baseStart} top`,
-//       end: `top+=${baseEnd} top`,
-//       scrub: 1,
-//     },
-//     keyframes: [
-//       { y: 100 },
-//       { y: 0, duration: 1 },
-//       { y: 0, duration: 1 },
-//       { y: -300, duration: 0.5 },
-//     ],
-//   });
+  gsap.to(title, {
+    scrollTrigger: {
+      trigger: triggerBlock,
+      start: `top+=${baseStart} top`,
+      end: `top+=${baseEnd} top`,
+      scrub: 1,
+    },
+    keyframes: [
+      { y: 100 },
+      { y: 0, duration: 1 },
+      { y: 0, duration: 1 },
+      { y: -300, duration: 0.5 },
+    ],
+  });
 
-//   gsap.fromTo(
-//     text,
-//     { y: 200 },
-//     {
-//       y: 0,
-//       opacity: 1,
-//       scrollTrigger: {
-//         trigger: triggerBlock,
-//         start: `top+=${baseStart + 200} top`,
-//         end: `top+=${baseEnd / 2} top`,
-//         scrub: 1,
-//       },
-//     }
-//   );
+  gsap.to(text, {
+    scrollTrigger: {
+      trigger: triggerBlock,
+      start: `top+=${baseStart} top`,
+      end: `top+=${baseEnd} top`,
+      scrub: 1,
+    },
+    keyframes: [
+      { y: 200 },
+      { y: 0, duration: 1 },
+      { y: 0, duration: 1 },
+      { y: -300, duration: 0.5 },
+    ],
+  });
 });
 
  const images = document.querySelectorAll(

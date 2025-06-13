@@ -30,6 +30,7 @@ body {
 .wp-block-animation-v3 {
     font-family: "Suisse Intl";
     color: #FFFFFF;
+    overflow: hidden;
 }
 
 .wp-block-animation-v3__heading {
@@ -62,16 +63,7 @@ body {
     color: #FFFFFF;
 }
 
-.wp-block-animation-v3__time {
-    position: absolute;
-    right: 0px;
-    font-family: "Suisse Intl";
-    font-weight: 400;
-    font-size: 103px;
-    letter-spacing: -0.02em;
-    text-align: center;
-    color: #FFFFFF;
-}
+
 
 .wp-block-animation-v3__wrapper {
     position: relative;
@@ -81,6 +73,7 @@ body {
     height: 100vh;
     margin: 0 auto;
     display: flex;
+    gap: 20px;
     justify-content: space-between;
 }
 
@@ -238,8 +231,21 @@ body {
 	line-height: 100%;
 	justify-content: center;
 	color: white;
+}
 
-	@media (max-width: 1023px) {
-		height: 38px;
-	}
+.wp-block-animation-v3__time-area{
+    width: 280px;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.wp-block-animation-v3__time {
+    position: relative;
+    right: 0px;
+    font-family: "Suisse Intl";
+    font-weight: 400;
+    font-size: 103px;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #FFFFFF;
 }
