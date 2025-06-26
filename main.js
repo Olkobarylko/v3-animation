@@ -147,6 +147,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     );
   });
 
+  // Покращений таймер з плавною анімацією під час скролу
   const timeBlock = document.querySelector(".time");
   const timeValue = timeBlock.getAttribute("data-time");
   const [targetHours, targetMinutes] = timeValue.split(":").map(Number);
@@ -158,55 +159,81 @@ document.addEventListener("DOMContentLoaded", (event) => {
     ".time-fourth-num",
   ];
 
-  function updateTimeDisplaySmooth(hours, minutes) {
-    const firstNum = Math.floor(hours / 10);
-    const secondNum = hours % 10;
-    const thirdNum = Math.floor(minutes / 10);
-    const fourthNum = minutes % 10;
-    
-    gsap.to(".time-first-num", {
-      y: `-${firstNum * 100}%`,
-      duration: 0.8,
-      ease: "sine.inOut"
-    });
-    
-    gsap.to(".time-second-num", {
-      y: `-${secondNum * 100}%`,
-      duration: 0.8,
-      ease: "sine.inOut",
-      delay: 0.1
-    });
-    
-    gsap.to(".time-third-num", {
-      y: `-${thirdNum * 100}%`,
-      duration: 0.8,
-      ease: "sine.inOut",
-      delay: 0.2
-    });
-    
-    gsap.to(".time-fourth-num", {
-      y: `-${fourthNum * 100}%`,
-      duration: 0.8,
-      ease: "sine.inOut",
-      delay: 0.3
-    });
+  // Ініціалізуємо колонки
+  columns.forEach(col => {
+    gsap.set(col, { y: "0%" });
+  });
+
+  // Змінні для зберігання поточного стану
+  let currentHours = 0;
+  let currentMinutes = 0;
+  let lastScrollTime = 0;
+  const scrollDelay = 50; // мс між оновленнями
+
+  // Функція для плавного оновлення часу
+  function updateTime(hours, minutes) {
+    // Оновлюємо години
+    if (hours !== currentHours) {
+      const firstNum = Math.floor(hours / 10);
+      const secondNum = hours % 10;
+      
+      gsap.to(".time-first-num", {
+        y: `-${firstNum * 100}%`,
+        duration: 0.6,
+        ease: "power2.out"
+      });
+      
+      gsap.to(".time-second-num", {
+        y: `-${secondNum * 100}%`,
+        duration: 0.6,
+        ease: "power2.out"
+      });
+      
+      currentHours = hours;
+    }
+
+    // Оновлюємо хвилини
+    if (minutes !== currentMinutes) {
+      const thirdNum = Math.floor(minutes / 10);
+      const fourthNum = minutes % 10;
+      
+      gsap.to(".time-third-num", {
+        y: `-${thirdNum * 100}%`,
+        duration: 0.6,
+        ease: "power2.out"
+      });
+      
+      gsap.to(".time-fourth-num", {
+        y: `-${fourthNum * 100}%`,
+        duration: 0.6,
+        ease: "power2.out"
+      });
+      
+      currentMinutes = minutes;
+    }
   }
 
-  updateTimeDisplaySmooth(0, 0);
-
+  // ScrollTrigger з реальним часом оновлення
   ScrollTrigger.create({
     trigger: ".wp-block-animation-v3__pin-block",
     start: "top top",
     end: `+=${totalScrollHeight}`,
     onUpdate: (self) => {
-      const progress = self.progress;
-      const totalTargetMinutes = targetHours * 60 + targetMinutes;
-      const currentTotalMinutes = progress * totalTargetMinutes;
-      
-      const currentHours = Math.floor(currentTotalMinutes / 60);
-      const currentMinutes = Math.floor(currentTotalMinutes % 60);
-      
-      updateTimeDisplaySmooth(currentHours, currentMinutes);
-    }
+      const now = Date.now();
+      if (now - lastScrollTime > scrollDelay) {
+        const progress = self.progress;
+        const totalTargetMinutes = targetHours * 60 + targetMinutes;
+        const currentTotalMinutes = progress * totalTargetMinutes;
+        
+        const hours = Math.floor(currentTotalMinutes / 60);
+        const minutes = Math.floor(currentTotalMinutes % 60);
+        
+        updateTime(hours, minutes);
+        lastScrollTime = now;
+      }
+    },
+    onEnter: () => updateTime(0, 0),
+    onLeave: () => updateTime(targetHours, targetMinutes),
+    onRefresh: () => updateTime(0, 0)
   });
 });
