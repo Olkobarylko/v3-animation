@@ -163,15 +163,13 @@ columns.forEach(col => {
   gsap.set(col, { y: "0%" });
 });
 
-// Змінні для зберігання поточного стану
+
 let currentHours = 0;
 let currentMinutes = 0;
 let lastScrollTime = 0;
-const scrollDelay = 50; // мс між оновленнями
+const scrollDelay = 500; 
 
-// Допоміжна функція для анімації цифри з правильним напрямком
 function animateDigit(selector, targetValue, currentValue) {
-  // Якщо це перехід 9→0 або 0→9 - змінюємо без анімації
   if ((currentValue === 9 && targetValue === 0) || (currentValue === 0 && targetValue === 9)) {
     gsap.set(selector, { y: `-${targetValue * 100}%` });
   } else {
@@ -183,42 +181,35 @@ function animateDigit(selector, targetValue, currentValue) {
   }
 }
 
-// Функція для плавного оновлення часу
 function updateTime(hours, minutes) {
-  // Оновлюємо години
   if (hours !== currentHours) {
     const firstNum = Math.floor(hours / 10);
     const secondNum = hours % 10;
     
-    // Перша цифра годин
     animateDigit(".time-first-num", firstNum, currentHours > 0 ? Math.floor(currentHours / 10) : 0);
     
-    // Друга цифра годин
     animateDigit(".time-second-num", secondNum, currentHours > 0 ? currentHours % 10 : 0);
     
     currentHours = hours;
   }
 
-  // Оновлюємо хвилини
   if (minutes !== currentMinutes) {
     const thirdNum = Math.floor(minutes / 10);
     const fourthNum = minutes % 10;
     
-    // Перша цифра хвилин
     animateDigit(".time-third-num", thirdNum, currentMinutes > 0 ? Math.floor(currentMinutes / 10) : 0);
     
-    // Друга цифра хвилин
     animateDigit(".time-fourth-num", fourthNum, currentMinutes > 0 ? currentMinutes % 10 : 0);
     
     currentMinutes = minutes;
   }
 }
 
-// ScrollTrigger з реальним часом оновлення
 ScrollTrigger.create({
   trigger: ".wp-block-animation-v3__pin-block",
   start: "top top",
   end: `+=${totalScrollHeight}`,
+  scrub: 20,
   onUpdate: (self) => {
     const now = Date.now();
     if (now - lastScrollTime > scrollDelay) {
