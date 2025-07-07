@@ -204,27 +204,26 @@ body {
     object-fit: cover;
 }
 
+/* Оновлений blink animation */
 @keyframes blink {
-	0%,
-	50%,
-	100% {
-		opacity: 1;
-	}
-	25%,
-	75% {
-		opacity: 0;
-	}
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
-.wp-block-animation-v3 .blinking {
-	animation: blink 0.5s ease-in-out 2;
+.wp-block-animation-v3 .time > div > div,
+.wp-block-animation-v3 .time .time-between-num {
+  transition: color 0.3s ease;
 }
 
 .wp-block-animation-v3 .time-area.finished .time > div > div,
 .wp-block-animation-v3 .time-area.finished .time .time-between-num {
-    color: #f54500;
+  color: #f54500 !important;
+  animation: none !important;
 }
-
 .wp-block-animation-v3 .time .time-between-num {
 	height: 90px;
 	width: 30px;
@@ -249,3 +248,4 @@ body {
     text-align: center;
     color: #FFFFFF;
 }
+
