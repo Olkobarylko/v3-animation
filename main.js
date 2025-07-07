@@ -257,16 +257,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
  ScrollTrigger.create({
-  trigger: ".wp-block-animation-v3__pin-block",
+  trigger: ".pin-spacer:has(.wp-block-animation-v3__pin-block)",
   start: `bottom-=500 center`,
   end: `bottom-=350 center`,
   scrub: 1,
-  onEnter: self => {
-    if (self.direction === 1) {
+  onEnter: () => {
       timeElements.forEach(el => {
         el.style.animation = 'blink 0.5s ease-in-out infinite';
       });
-    }
   },
   onEnterBack: () => {
     timeElements.forEach(el => {
@@ -279,13 +277,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
   }
 });
-
-
   ScrollTrigger.create({
-    trigger: ".wp-block-animation-v3__pin-block",
+    trigger: ".pin-spacer:has(.wp-block-animation-v3__pin-block)",
     start: `bottom-=350 center`,
     end: `bottom center`,
     scrub: true,
+    
     onEnter: () => {
       timeArea.classList.add('finished');
     },
