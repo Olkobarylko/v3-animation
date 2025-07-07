@@ -261,7 +261,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   start: `bottom-=500 center`,
   end: `bottom-=350 center`,
   scrub: 1,
-  markers: true,
   onEnter: self => {
     if (self.direction === 1) {
       timeElements.forEach(el => {
