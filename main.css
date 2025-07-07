@@ -257,7 +257,7 @@ body {
         position: absolute;
         height: 100vh;
         display: flex;
-        align-items: center;
+        align-items: end;
     }
 
     .wp-block-animation-v3__images {
@@ -273,10 +273,10 @@ body {
     }
 
     .wp-block-animation-v3__time-area{
-        height: 100px;
+        height: 54px;
         position: absolute;
-        top: 0px;
-        right: 0px;
+        top: 220px;
+        right: 14px;
     }
 
     .time-area-overflow{
@@ -285,5 +285,57 @@ body {
 
     .wp-block-animation-v3 .time{
         height: 54px;
+    }
+
+    .wp-block-animation-v3__images::before{
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .wp-block-animation-v3__info-item{
+        transform: translateY(calc(-100% - 80px));
+    }
+
+    .wp-block-animation-v3__info-item{
+        padding: 0px 14px;
+    }
+
+    .wp-block-animation-v3__info-title{
+        font-size: 32px;
+    }
+
+    .wp-block-animation-v3__info-text{
+        font-size: 18px;
+    }
+
+    .wp-block-animation-v3 .time .time-between-num {
+         font-size: 54px;
+         justify-content: start;
+         width: 14px;
+    }
+
+    .wp-block-animation-v3 .time>div{
+        width: 27px;
+
+    }
+
+    .wp-block-animation-v3__time-area{
+        width: 155px;
+    }
+
+    .wp-block-animation-v3__time::before{
+        content: "";
+        position: absolute;
+       top: 22px;
+        left: -32px;
+        width: 8px;
+        height: 8px;
+        background-color: #F54500;
     }
 }
