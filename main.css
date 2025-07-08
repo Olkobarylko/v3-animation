@@ -227,6 +227,15 @@ body {
     animation: none !important;
 }
 
+.wp-block-animation-v3 .wp-block-animation-v3__info-title{
+    transition: color 0.3s ease;
+}
+
+.wp-block-animation-v3 .wp-block-animation-v3__info-title.finished{
+    color: #f54500 !important;
+    animation: none !important;
+}
+
 .wp-block-animation-v3 .time .time-between-num {
     height: 90px;
     width: 30px;

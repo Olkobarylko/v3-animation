@@ -256,27 +256,35 @@ document.addEventListener("DOMContentLoaded", (event) => {
     onRefresh: () => updateTime(0, 0),
   });
 
+  const titles = document.querySelectorAll('.wp-block-animation-v3__info-title');
+  const lastTitle = titles[titles.length - 1];
+
  ScrollTrigger.create({
   trigger: ".pin-spacer:has(.wp-block-animation-v3__pin-block)",
-  start: `bottom-=500 center`,
+  start: `bottom-=700 center`,
   end: `bottom-=350 center`,
   scrub: 1,
   onEnter: () => {
       timeElements.forEach(el => {
         el.style.animation = 'blink 0.5s ease-in-out infinite';
       });
+      lastTitle.style.animation = 'blink 0.5s ease-in-out infinite';
   },
   onEnterBack: () => {
     timeElements.forEach(el => {
       el.style.animation = '';
     });
+    lastTitle.style.animation = '';
   },
   onLeaveBack: () => {
     timeElements.forEach(el => {
       el.style.animation = '';
     });
+    lastTitle.style.animation = '';
   }
 });
+
+
   ScrollTrigger.create({
     trigger: ".pin-spacer:has(.wp-block-animation-v3__pin-block)",
     start: `bottom-=350 center`,
@@ -285,9 +293,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
     
     onEnter: () => {
       timeArea.classList.add('finished');
+      lastTitle.classList.add('finished');
     },
     onLeaveBack: () => {
       timeArea.classList.remove('finished');
+      lastTitle.classList.remove('finished');
     }
   });
 });
